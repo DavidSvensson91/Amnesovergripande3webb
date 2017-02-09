@@ -2,13 +2,16 @@
   "name": "webbfrontend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "Admin/index.html",
   "dependencies": {
     "angular": "^1.6.2",
+    "angular-route": "^1.6.2",
     "bootstrap": "^3.3.7",
     "jquery": "^3.1.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "live-server": "^1.2.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
