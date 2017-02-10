@@ -6,6 +6,10 @@ app.config(function ($routeProvider) {
             { templateUrl: 'frontpage.html' })
         .when('/vaderdata',
             { templateUrl: 'vaderdata.html' })
-        .when('/addstation', { template: "<h1>Main</h1><p>Click on the links to change this content</p>" })
-        .when('/deletedata', { template: "<h1>Main</h1><p>Click on the links to change this content</p>" });
+        .when('/addstation', 
+            { templateUrl: "addStation.html" })
+        .when('/deletedata', 
+            { templateUrl: "deleteData.html" })
+        .when('/searchweather',
+            { templateUrl: "searchWeather.html" });
 });
