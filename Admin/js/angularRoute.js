@@ -3,13 +3,13 @@ var app = angular.module('myApp', ['ngRoute']);
 app.config(function ($routeProvider) {
     $routeProvider
         .when('/',
-            { templateUrl: 'frontpage.html' })
+            { templateUrl: 'partials/frontpage.html' })
         .when('/vaderdata',
-            { templateUrl: 'vaderdata.html' })
+            { templateUrl: 'partials/vaderdata.html' })
         .when('/addstation', 
-            { templateUrl: "addStation.html" })
+            { templateUrl: "partials/addStation.html" })
         .when('/deletedata', 
-            { templateUrl: "deleteData.html" })
+            { templateUrl: "partials/deleteData.html" })
         .when('/searchweather',
-            { templateUrl: "searchWeather.html" });
+            { templateUrl: "partials/searchWeather.html" });
 });
