@@ -3,7 +3,7 @@
     <p>På denna sida lägger man till väderdata, stationer och molntyper.</p>
 </section>
 
-<section class="form-section">
+<section ng-controller="vaderdata" class="form-section">
         <section class="col-xs-3">
             <label for="sel1">Station</label>
             <select class="form-control" id="sel1">
@@ -14,24 +14,34 @@
             </select>
 
             <label for="input2">Temp</label>
-            <input class="form-control" id="input2">
+            <input ng-model="temp"  class="form-control" id="input2">
 
             <label for="input3">Luftfuktighet</label>
-            <input class="form-control" id="input3">
+            <input ng-model="luftfuktighet" class="form-control" id="input3">
 
             <label for="input4">Vindstyrka</label>
-            <input class="form-control" id="input4">
+            <input ng-model="vindstyrka" class="form-control" id="input4">
 
             <label for="input5">Molnbashöjd</label>
-            <input class="form-control" id="input5">
+            <input ng-model="molnbashojd" class="form-control" id="input5">
 
             <label for="input6">Delar av himmeln täckt av moln  </label>
-            <input class="form-control" id="input6">
+            <input ng-model="himmel" class="form-control" id="input6">
 
             <label for="input7">Lufttryck</label>
-            <input class="form-control" id="input7">
+            <input ng-model="lufttryck" class="form-control" id="input7">
 
-            <button type="button" class="vaderbutton btn btn-success btn-block">Lägg till väderdata</button>
+            <button ng-click="vader(temp, luftfuktighet, vindstyrka, molnbashojd, himmel, lufttryck)"
+                    type="button" class="vaderbutton btn btn-success btn-block">Lägg till väderdata</button>
+
+            <p>
+                {{temp}}°C
+                {{luftfuktighet}}%
+                {{vindstyrka}}m/s
+                {{molnbashojd}}km
+                {{himmel}}%
+                {{lufttryck}}%
+            </p>
 
         </section>
 
@@ -52,7 +62,6 @@
 
 
         <label>Datum</label>
-
         <div class="input-group date" data-provide="datepicker">
             <input type="text" class="form-control datepicker"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
         </div>
@@ -69,4 +78,5 @@
         <button type="button" class="vaderbutton btn btn-success btn-block">Lägg till molntyp</button>
 
     </section>
+
 </section>
