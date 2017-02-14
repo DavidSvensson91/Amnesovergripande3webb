@@ -1,17 +1,19 @@
 app.controller('vaderdata',function($scope, $filter){
     $scope.station = '';
     $scope.temperatur = '';
-    $scope.date = '2017-01-01';
+    //$scope.date = '2017-01-01';
     $scope.luftfuktighet = '';
     $scope.vindstyrka = '';
     $scope.molnbashojd = '';
     $scope.himmel = '';
     $scope.lufttryck = '';
 
-    //add station/cloudtype
+    //addStation info.
     $scope.addStation = '';
 
-    //Existerande stationer från databasen
+    $scope.date = moment().format('YYYY-MM-DD, h:mm:ss');
+
+    //Existerande stationer från databasen.
     $scope.station1 = {
         availableOptions: [
             {value: 1, name: 'Stockholm'},
@@ -23,7 +25,7 @@ app.controller('vaderdata',function($scope, $filter){
         ]
     };
 
-    //Existerande molntyper från databasen
+    //Existerande molntyper från databasen.
     $scope.molntyp1 = {
         availableOptions: [
             {value: 'Valkmoln'},
@@ -31,7 +33,7 @@ app.controller('vaderdata',function($scope, $filter){
         ]
     };
 
-    //Existernade vindriktning från databasen
+    //Existernade vindriktningar från databasen.
     $scope.vindriktning1 = {
         availableOptions: [
             {value: 'Nord'},
@@ -40,19 +42,13 @@ app.controller('vaderdata',function($scope, $filter){
     };
 
 
-    //För att lägga till väderdata
+    //För att lägga till väderdata.
     $scope.vader = function(temperatur, date, lufttryck, luftfuktighet, vindstyrka, molnbashojd, himmel, molntyp1, vindriktning1) {
-        $scope.temperatur = temperatur;
-        $scope.date = date;
-        $scope.lufttryck = lufttryck;
-        $scope.luftfuktighet = luftfuktighet;
-        $scope.vindstyrka = vindstyrka;
-        $scope.molnbashojd = molnbashojd;
-        $scope.himmel = himmel;
-        $scope.molntyp = molntyp1;
-        $scope.vindriktning = vindriktning1;
 
-        var vaderinfo = {"temperatur" : temperatur, "date": date, "airPressure" : lufttryck, "humidity" : luftfuktighet,
+        $scope.date = moment().format('YYYY-MM-DD, h:mm:ss');
+
+
+        var vaderinfo = {"temp" : temperatur, "date": date, "airPressure" : lufttryck, "humidity" : luftfuktighet,
             "windForce" : vindstyrka, "cloudBase" : molnbashojd, "okta" : himmel, "cloudType" : molntyp1, "windDirection" : vindriktning1};
         
         var jsonObrj = JSON.stringify(vaderinfo);
@@ -62,7 +58,7 @@ app.controller('vaderdata',function($scope, $filter){
     };
 
 
-    //För att lägga till stationer
+    //För att lägga till stationer.
     $scope.add = function(addStation){
         $scope.addStation = addStation;
 

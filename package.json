@@ -7,7 +7,8 @@
     "angular": "^1.6.2",
     "angular-route": "^1.6.2",
     "bootstrap": "^3.3.7",
-    "jquery": "^3.1.1"
+    "jquery": "^3.1.1",
+    "moment": "^2.17.1"
   },
   "devDependencies": {
     "live-server": "^1.2.0"

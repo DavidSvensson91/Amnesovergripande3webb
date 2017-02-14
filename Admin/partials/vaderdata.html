@@ -6,22 +6,22 @@
 <section ng-controller="vaderdata" class="form-section">
         <section class="col-xs-3">
             <label for="input2">Temperatur</label>
-            <input ng-model="temperatur"  class="form-control" id="input2">
+            <input ng-model="temperatur" type="number" class="form-control" id="input2">
 
             <label for="input3">Luftfuktighet</label>
-            <input ng-model="luftfuktighet" class="form-control" id="input3">
+            <input ng-model="luftfuktighet" type="number" class="form-control" id="input3">
 
             <label for="input4">Vindstyrka</label>
-            <input ng-model="vindstyrka" class="form-control" id="input4">
+            <input ng-model="vindstyrka" type="number" class="form-control" id="input4">
 
             <label for="input5">Molnbashöjd</label>
-            <input ng-model="molnbashojd" class="form-control" id="input5">
+            <input ng-model="molnbashojd" type="number" class="form-control" id="input5">
 
             <label for="input6">Mängd moln i %</label>
-            <input ng-model="himmel" class="form-control" id="input6">
+            <input ng-model="himmel" type="number" min="0" max="8" class="form-control" id="input6">
 
             <label for="input7">Lufttryck</label>
-            <input ng-model="lufttryck" class="form-control" id="input7">
+            <input ng-model="lufttryck" type="number" class="form-control" id="input7">
 
             <button ng-click="vader(temperatur, date, lufttryck, luftfuktighet, vindstyrka, molnbashojd, himmel, molntyp1.molntyp, vindriktning1.vindriktning)"
                     type="button" class="vaderbutton btn btn-success btn-block">Lägg till väderdata</button>
