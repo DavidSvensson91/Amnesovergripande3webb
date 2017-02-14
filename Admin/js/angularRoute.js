@@ -10,6 +10,8 @@ app.config(function ($routeProvider) {
             { templateUrl: "partials/addStation.html" })
         .when('/deletedata', 
             { templateUrl: "partials/deleteData.html" })
+        .when('/login',
+            { templateUrl: "partials/Nmhi-login.html" })
         .when('/searchweather',
             { templateUrl: "partials/searchWeather.html" });
 });
