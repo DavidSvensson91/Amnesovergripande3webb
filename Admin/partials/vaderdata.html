@@ -23,7 +23,7 @@
             <label for="input7">Lufttryck</label>
             <input ng-model="lufttryck" class="form-control" id="input7">
 
-            <button ng-click="vader(station1.stationer, temperatur, date, lufttryck, luftfuktighet, vindstyrka, molnbashojd, himmel, molntyp1.molntyp, vindriktning1.vindriktning)"
+            <button ng-click="vader(temperatur, date, lufttryck, luftfuktighet, vindstyrka, molnbashojd, himmel, molntyp1.molntyp, vindriktning1.vindriktning)"
                     type="button" class="vaderbutton btn btn-success btn-block">Lägg till väderdata</button>
         </section>
 
@@ -45,10 +45,6 @@
             </select>
         </form>
 
-
-        <p>
-            Station: {{station1.stationer}}
-        </p>
         <p>
             Molntyp: {{molntyp1.molntyp}}
         </p>
@@ -85,10 +81,8 @@
     </section>
 
     <section class="col-xs-3">
-
         <label for="inputS1">Lägg till station</label>
         <input ng-model="addStation" class="form-control" id="inputS1">
         <button ng-click="add(addStation)" type="button" class="vaderbutton btn btn-success btn-block">Lägg till station</button>
-        
     </section>
 </section>

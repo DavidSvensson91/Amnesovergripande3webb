@@ -41,8 +41,7 @@ app.controller('vaderdata',function($scope, $filter){
 
 
     //För att lägga till väderdata
-    $scope.vader = function(station1, temperatur, date, lufttryck, luftfuktighet, vindstyrka, molnbashojd, himmel, molntyp1, vindriktning1) {
-        $scope.station = station1;
+    $scope.vader = function(temperatur, date, lufttryck, luftfuktighet, vindstyrka, molnbashojd, himmel, molntyp1, vindriktning1) {
         $scope.temperatur = temperatur;
         $scope.date = date;
         $scope.lufttryck = lufttryck;
@@ -53,13 +52,13 @@ app.controller('vaderdata',function($scope, $filter){
         $scope.molntyp = molntyp1;
         $scope.vindriktning = vindriktning1;
 
-        var vaderinfo = {"station" : station1, "temperatur" : temperatur, "date": date, "airPressure" : lufttryck, "humidity" : luftfuktighet,
+        var vaderinfo = {"temperatur" : temperatur, "date": date, "airPressure" : lufttryck, "humidity" : luftfuktighet,
             "windForce" : vindstyrka, "cloudBase" : molnbashojd, "okta" : himmel, "cloudType" : molntyp1, "windDirection" : vindriktning1};
         
         var jsonObrj = JSON.stringify(vaderinfo);
 
 
-        console.log(station1, date, molntyp1, vindriktning1, temperatur, luftfuktighet, vindstyrka, molnbashojd, himmel, lufttryck, vaderinfo, jsonObrj);
+        console.log(date, molntyp1, vindriktning1, temperatur, luftfuktighet, vindstyrka, molnbashojd, himmel, lufttryck, vaderinfo, jsonObrj);
     };
 
 
@@ -67,8 +66,10 @@ app.controller('vaderdata',function($scope, $filter){
     $scope.add = function(addStation){
         $scope.addStation = addStation;
 
-        var addItems = {"namn" : addStation};
+        var addItems = {"namn" : addStation, "weatherInfo":[ ]
+        };
 
-        var jsonObrjStation = JSON.stringify(addStation);
+        var jsonObrjStation = JSON.stringify(addItems);
+        console.log(jsonObrjStation);
     }
 });
