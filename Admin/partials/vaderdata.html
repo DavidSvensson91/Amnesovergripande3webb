@@ -5,16 +5,8 @@
 
 <section ng-controller="vaderdata" class="form-section">
         <section class="col-xs-3">
-            <label for="sel1">Station</label>
-            <select class="form-control" id="sel1">
-                <option>Stockholm</option>
-                <option>Göteborg</option>
-                <option>Lund</option>
-                <option>Umeå</option>
-            </select>
-
-            <label for="input2">Temp</label>
-            <input ng-model="temp"  class="form-control" id="input2">
+            <label for="input2">Temperatur</label>
+            <input ng-model="temperatur"  class="form-control" id="input2">
 
             <label for="input3">Luftfuktighet</label>
             <input ng-model="luftfuktighet" class="form-control" id="input3">
@@ -25,58 +17,78 @@
             <label for="input5">Molnbashöjd</label>
             <input ng-model="molnbashojd" class="form-control" id="input5">
 
-            <label for="input6">Delar av himmeln täckt av moln  </label>
+            <label for="input6">Mängd moln i %</label>
             <input ng-model="himmel" class="form-control" id="input6">
 
             <label for="input7">Lufttryck</label>
             <input ng-model="lufttryck" class="form-control" id="input7">
 
-            <button ng-click="vader(temp, luftfuktighet, vindstyrka, molnbashojd, himmel, lufttryck)"
+            <button ng-click="vader(station1.stationer, temperatur, date, lufttryck, luftfuktighet, vindstyrka, molnbashojd, himmel, molntyp1.molntyp, vindriktning1.vindriktning)"
                     type="button" class="vaderbutton btn btn-success btn-block">Lägg till väderdata</button>
-
-            <p>
-                {{temp}}°C
-                {{luftfuktighet}}%
-                {{vindstyrka}}m/s
-                {{molnbashojd}}km
-                {{himmel}}%
-                {{lufttryck}}%
-            </p>
-
         </section>
 
     <section class="col-xs-3">
-        <label for="sel2">Molntyper</label>
-        <select class="form-control" id="sel2">
-            <option>Valkmoln</option>
-            <option>Dimmoln</option>
-        </select>
-        <label for="sel3">Vindriktning</label>
-        <select class="form-control" id="sel3">
-            <option>Nord</option>
-            <option>Syd</option>
-        </select>
+        <form>
+            <label for="sel1">Station</label>
+            <select id="sel1" class="form-control" name="stationer" ng-model="station1.stationer">
+                <option ng-repeat="option in station1.availableOptions" ng-value="option.value">{{option.name}}</option>
+            </select>
 
-        <label for="input1">Klockslag</label>
-        <input class="form-control" id="input1">
+            <label for="sel2">Molntyp</label>
+            <select id="sel2" class="form-control" name="molntyp" ng-model="molntyp1.molntyp">
+                <option ng-repeat="option in molntyp1.availableOptions" ng-value="option.value">{{option.value}}</option>
+            </select>
+
+            <label for="sel3">Vindriktning</label>
+            <select id="sel3" class="form-control" name="vindriktning" ng-model="vindriktning1.vindriktning">
+                <option ng-repeat="option in vindriktning1.availableOptions" ng-value="option.value">{{option.value}}</option>
+            </select>
+        </form>
 
 
-        <label>Datum</label>
-        <div class="input-group date" data-provide="datepicker">
-            <input type="text" class="form-control datepicker"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
-        </div>
+        <p>
+            Station: {{station1.stationer}}
+        </p>
+        <p>
+            Molntyp: {{molntyp1.molntyp}}
+        </p>
+        <p>
+            Vindriktning: {{vindriktning1.vindriktning}}
+        </p>
+        <p>
+            {{temperatur}}°C
+        </p>
+        <p>
+            {{luftfuktighet}}%
+        </p>
+        <p>
+            {{vindstyrka}}m/s
+        </p>
+        <p>
+            {{molnbashojd}}km
+        </p>
+        <p>
+            {{himmel}}%
+        </p>
+        <p>
+            {{lufttryck}}%
+        </p>
+
+        <!--<label for="input1">Klockslag</label>-->
+        <!--<input class="form-control" id="input1">-->
+
+
+        <!--<label>Datum</label>-->
+        <!--<div class="input-group date" data-provide="datepicker">-->
+            <!--<input type="text" class="form-control datepicker"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>-->
+        <!--</div>-->
     </section>
 
     <section class="col-xs-3">
 
         <label for="inputS1">Lägg till station</label>
-        <input class="form-control" id="inputS1">
-        <button type="button" class="vaderbutton btn btn-success btn-block">Lägg till station</button>
-
-        <label for="inputS2">Lägg till molntyp</label>
-        <input class="form-control" id="inputS2">
-        <button type="button" class="vaderbutton btn btn-success btn-block">Lägg till molntyp</button>
-
+        <input ng-model="addStation" class="form-control" id="inputS1">
+        <button ng-click="add(addStation)" type="button" class="vaderbutton btn btn-success btn-block">Lägg till station</button>
+        
     </section>
-
 </section>
