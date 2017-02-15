@@ -13,7 +13,7 @@ angular.module('myApp')
          *  param weatherInfo should be a JSON object
          * */
 
-        service.getAllWeatherInfo = getuserinfo();
+        service.GetUserInfo = getuserinfo();
         //Returning service with function calls
         return service;
 
