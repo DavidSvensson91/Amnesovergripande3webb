@@ -18,6 +18,8 @@ angular.module('myApp')
         return service;
 
         function getuserinfo() {
+
+            
             //TODO: GET through api
             return $http.get(apiUrl).then(handleSuccess, handleError('Error getting test tokens'));
         }

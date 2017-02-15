@@ -1,4 +1,4 @@
-app.controller('vaderdata',function($scope, $filter){
+angular.module('myApp').controller('vaderdata',['$scope','$filter','$http','weatherService',function($scope, $filter ,$http, weatherService){
     $scope.station = '';
     $scope.temperatur = '';
     //$scope.date = '2017-01-01';
@@ -7,6 +7,17 @@ app.controller('vaderdata',function($scope, $filter){
     $scope.molnbashojd = '';
     $scope.himmel = '';
     $scope.lufttryck = '';
+    weatherService.getAllWeatherInfo();
+    /*$http({
+        method: 'get',
+        url: 'http://10.8.1.209:8080/weather-station/'
+    }).then(function successcallback(response) {
+        console.log(response.data);
+    }, function errorcallback(response) {
+        console.log("error!");
+        // called asynchronously if an error occurs
+        // or server returns response with an error status.
+    });*/
 
     //addStation info.
     $scope.addStation = '';
@@ -68,4 +79,4 @@ app.controller('vaderdata',function($scope, $filter){
         var jsonObrjStation = JSON.stringify(addItems);
         console.log(jsonObrjStation);
     }
-});
+}]);

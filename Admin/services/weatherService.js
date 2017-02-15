@@ -3,11 +3,12 @@
  */
 
 angular.module('myApp')
-    .service('weather-service', ['$http', function ($http) {
+    .service('weatherService', ['$http', function ($http) {
         console.log('weather service initiated');
         var service = {};
 
-        var apiUrl = 'http://localhost/weather-info/'; // TODO: export to config file
+        var apiUrl = 'http://10.8.1.209:8080/weather-info/'; // TODO: export to config file
+
 
 
         /*
@@ -15,40 +16,41 @@ angular.module('myApp')
         * */
 
         service.getAllWeatherInfo = getAllWeatherInfo;
+        service.getAllWeatherInfoByStation = getAllWeatherInfoByStation;
         service.getWeatherInfoById = getWeatherInfoById;
         service.createWeatherInfo = createWeatherInfo;
         service.updateWeatherInfo = updateWeatherInfo;
         service.deleteWeatherInfo = deleteWeatherInfo;
+        
         //Returning service with function calls
         return service;
 
         function getAllWeatherInfo() {
-            //TODO: GET through api
             return $http.get(apiUrl).then(handleSuccess, handleError('Error getting test tokens'));
         }
+        function getAllWeatherInfoByStation(weatherStationId){
+            return $http.get(apiUrl+weatherStationId + '/weather-info/')
+        }
 
-        function getWeatherInfoById(weatherInfo) {
-            //TODO: GET through api
-            return $http.get(apiUrl + weatherInfo.id).then(handleSuccess, handleError('Error getting test token'));
+        function getWeatherInfoById(weatherId) {
+            return $http.get(apiUrl + weatherId).then(handleSuccess, handleError('Error getting test token'));
         }
 
         function createWeatherInfo(weatherInfo) {
-            //TODO: POST through api
-            return $http.post(apiUrl, weatherInfo).then(handleSuccess, handleError('Error creating test access'));
+            return $http.post(apiUrl + weatherStationId + '/weather-info/', weatherInfo).then(handleSuccess, handleError('Error creating test access'));
         }
 
         function updateWeatherInfo(weatherInfo) {
-            //TODO: UPDATE through api
-            return $http.put(apiUrl  + weatherInfo.id, weatherInfo).then(handleSuccess, handleError('Error updating test'));
+            return $http.put(apiUrl, weatherInfo).then(handleSuccess, handleError('Error updating test'));
         }
 
-        function deleteWeatherInfo(weatherInfo) {
-            //TODO: DELETE through api
-            return $http.delete(apiUrl + weatherInfo.id, weatherInfo).then(handleSuccess, handleError('Error deleting test'));
+        function deleteWeatherInfo(weatherid) {
+            return $http.delete(apiUrl + weatherid).then(handleSuccess, handleError('Error deleting test'));
         }
 
-        var handleSuccess = function () {
+        var handleSuccess = function (response) {
             console.log('Request successfully executed..');
+            console.log(response.data);
         };
 
         var handleError = function (string) {
