@@ -12,11 +12,12 @@ angular.module('myApp')
         var handleSuccess = function (response) {
             console.log('Request successfully executed..');
             console.table(response.data);
+            return(response.data);
         };
 
         var handleError = function (string) {
             console.log(string);
-        }
+        };
 
 
         /*
@@ -41,7 +42,7 @@ angular.module('myApp')
         }
 
         function getAllWeatherInfoByStation(weatherStationId) {
-            return $http.get(apiUrl + '/weather-station/' + weatherStationId + '/weather-info/')
+            return $http.get(apiUrl + '/weather-station/' + weatherStationId + '/weather-info/').then(handleSuccess);
         }
 
         function getWeatherInfoById(weatherId) {
@@ -60,13 +61,13 @@ angular.module('myApp')
             return $http.delete(apiUrl + '/weather-info/' + weatherid + '/').then(handleSuccess);
         }
         function  deleteWeatherStation(weatherStationId) {
-            return $http.delete(apiUrl + '/weather-station/' + weatherStationId +'/');
+            return $http.delete(apiUrl + '/weather-station/' + weatherStationId +'/').then(handleSuccess);
         }
         function  createWeatherStation(weatherStation) {
-            return $http.post(apiUrl + '/weather-station/',weatherStation);
+            return $http.post(apiUrl + '/weather-station/',weatherStation).then(handleSuccess);
         }
         function updateWeatherStation(weatherStation){
-            return $http.put(apiUrl + '/weather-station/',weatherStation);
+            return $http.put(apiUrl + '/weather-station/',weatherStation).then(handleSuccess);
         }
 
 

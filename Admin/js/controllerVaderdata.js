@@ -16,16 +16,16 @@ angular.module('myApp').controller('vaderdata',['$scope','$filter','$http','weat
     $scope.date = moment().format('YYYY-MM-DD, h:mm:ss');
 
     //Existerande stationer från databasen.
-    $scope.station1 = {
-        availableOptions: [
-            {value: 1, name: 'Stockholm'},
-            {value: 2, name: 'Göteborg'},
-            {value: 3, name: 'Malmö'},
-            {value: 4, name: 'Lund'},
-            {value: 5, name: 'Umeå'},
-            {value: 6, name: 'Väsby'}
-        ]
-    };
+    // $scope.station1 = {
+    //     availableOptions: [
+    //         {value: 1, name: 'Stockholm'},
+    //         {value: 2, name: 'Göteborg'},
+    //         {value: 3, name: 'Malmö'},
+    //         {value: 4, name: 'Lund'},
+    //         {value: 5, name: 'Umeå'},
+    //         {value: 6, name: 'Väsby'}
+    //     ]
+    // };
 
     //Existerande molntyper från databasen.
     $scope.molntyp = {
@@ -43,6 +43,11 @@ angular.module('myApp').controller('vaderdata',['$scope','$filter','$http','weat
         ]
     };
 
+    //Hämta stationer
+    $scope.station1 = weatherService.getAllWeatherInfo();
+
+    console.log("-------------------------------");
+    console.log($scope.station1);
 
     //För att lägga till väderdata.
     $scope.vader = function(temperatur, date, lufttryck, luftfuktighet, vindstyrka, molnbashojd, himmel, molntyp, vindriktning) {
@@ -60,14 +65,13 @@ angular.module('myApp').controller('vaderdata',['$scope','$filter','$http','weat
     };
 
 
+    // var getStation = $http.get('http://localhost:8080/weather-station/1', {'Content-Type': 'application/x-www-form-urlencoded'});
+    // var hej = JSON.stringify(getStation);
+    // console.log(getStation);
+
     //För att lägga till stationer.
-    $scope.add = function(addStation){
-        $scope.addStation = addStation;
-
-        var addItems = {"namn" : addStation, "weatherInfo":[ ]
-        };
-
-        var jsonObrjStation = JSON.stringify(addItems);
-        console.log(jsonObrjStation);
-    }
+    $scope.addStations = function(addStation) {
+        var jsonObrjStation = JSON.stringify(addStation);
+        weatherService.createWeatherStation(jsonObrjStation);
+    };
 }]);
