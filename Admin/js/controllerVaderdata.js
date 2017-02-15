@@ -28,7 +28,7 @@ angular.module('myApp').controller('vaderdata',['$scope','$filter','$http','weat
     };
 
     //Existerande molntyper från databasen.
-    $scope.molntyp1 = {
+    $scope.molntyp = {
         availableOptions: [
             {value: 'Valkmoln'},
             {value: 'Dimmoln'}
@@ -36,7 +36,7 @@ angular.module('myApp').controller('vaderdata',['$scope','$filter','$http','weat
     };
 
     //Existernade vindriktningar från databasen.
-    $scope.vindriktning1 = {
+    $scope.vindriktning = {
         availableOptions: [
             {value: 'Nord'},
             {value: 'Syd'}
@@ -45,18 +45,18 @@ angular.module('myApp').controller('vaderdata',['$scope','$filter','$http','weat
 
 
     //För att lägga till väderdata.
-    $scope.vader = function(temperatur, date, lufttryck, luftfuktighet, vindstyrka, molnbashojd, himmel, molntyp1, vindriktning1) {
+    $scope.vader = function(temperatur, date, lufttryck, luftfuktighet, vindstyrka, molnbashojd, himmel, molntyp, vindriktning) {
 
         $scope.date = moment().format('YYYY-MM-DD, h:mm:ss');
 
 
         var vaderinfo = {"temp" : temperatur, "date": date, "airPressure" : lufttryck, "humidity" : luftfuktighet,
-            "windForce" : vindstyrka, "cloudBase" : molnbashojd, "okta" : himmel, "cloudType" : molntyp1, "windDirection" : vindriktning1};
+            "windForce" : vindstyrka, "cloudBase" : molnbashojd, "okta" : himmel, "cloudType" : molntyp, "windDirection" : vindriktning};
         
         var jsonObrj = JSON.stringify(vaderinfo);
 
 
-        console.log(date, molntyp1, vindriktning1, temperatur, luftfuktighet, vindstyrka, molnbashojd, himmel, lufttryck, vaderinfo, jsonObrj);
+        console.log(date, molntyp, vindriktning, temperatur, luftfuktighet, vindstyrka, molnbashojd, himmel, lufttryck, vaderinfo, jsonObrj);
     };
 
 
