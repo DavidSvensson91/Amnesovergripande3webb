@@ -7,7 +7,7 @@ angular.module('myApp')
         console.log('weather service initiated');
         var service = {};
 
-        var apiUrl = 'http://10.8.1.209:8080/weather-info/'; // TODO: export to config file
+        var apiUrl = 'http://localhost:8080/'; // TODO: export to config file
 
         var handleSuccess = function (response) {
             console.log('Request successfully executed..');
@@ -34,7 +34,7 @@ angular.module('myApp')
         return service;
 
         function getAllWeatherInfo() {
-            return $http.get(apiUrl).then(handleSuccess, handleError('Error getting test tokens'));
+            return $http.get(apiUrl+'weather-station/').then(handleSuccess, handleError('Error getting test tokens'));
         }
         function getAllWeatherInfoByStation(weatherStationId){
             return $http.get(apiUrl+weatherStationId + '/weather-info/')

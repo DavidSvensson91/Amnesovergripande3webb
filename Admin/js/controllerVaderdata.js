@@ -8,7 +8,7 @@ angular.module('myApp').controller('vaderdata',['$scope','$filter','$http','weat
     $scope.lufttryck = '';
     $scope.molntyp = '';
     $scope.vindriktning = '';
-
+    weatherService.getAllWeatherInfo();
 
     //addStation info.
     $scope.addStation = '';
