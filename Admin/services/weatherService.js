@@ -7,11 +7,11 @@ angular.module('myApp')
         console.log('weather service initiated');
         var service = {};
 
-        var apiUrl = 'http://localhost:8080/'; // TODO: export to config file
+        var apiUrl = 'http://localhost:8080'; // TODO: export to config file
 
         var handleSuccess = function (response) {
             console.log('Request successfully executed..');
-            console.log(response.data);
+            console.table(response.data);
         };
 
         var handleError = function (string) {
@@ -20,8 +20,8 @@ angular.module('myApp')
 
 
         /*
-        *  param weatherInfo should be a JSON object
-        * */
+         *  param weatherInfo should be a JSON object
+         * */
 
         service.getAllWeatherInfo = getAllWeatherInfo;
         service.getAllWeatherInfoByStation = getAllWeatherInfoByStation;
@@ -29,33 +29,45 @@ angular.module('myApp')
         service.createWeatherInfo = createWeatherInfo;
         service.updateWeatherInfo = updateWeatherInfo;
         service.deleteWeatherInfo = deleteWeatherInfo;
-        
+        service.deleteWeatherStation =deleteWeatherStation;
+        service.createWeatherStation = createWeatherStation;
+        service.updateWeatherStation = updateWeatherStation;
+
         //Returning service with function calls
         return service;
 
         function getAllWeatherInfo() {
-            return $http.get(apiUrl+'weather-station/').then(handleSuccess, handleError('Error getting test tokens'));
+            return $http.get(apiUrl + '/weather-station/').then(handleSuccess);
         }
-        function getAllWeatherInfoByStation(weatherStationId){
-            return $http.get(apiUrl+weatherStationId + '/weather-info/')
+
+        function getAllWeatherInfoByStation(weatherStationId) {
+            return $http.get(apiUrl + '/weather-station/' + weatherStationId + '/weather-info/')
         }
 
         function getWeatherInfoById(weatherId) {
-            return $http.get(apiUrl + weatherId).then(handleSuccess, handleError('Error getting test token'));
+            return $http.get(apiUrl + '/weather-info/' + weatherId + '/').then(handleSuccess);
         }
 
-        function createWeatherInfo(weatherInfo) {
-            return $http.post(apiUrl + weatherStationId + '/weather-info/', weatherInfo).then(handleSuccess, handleError('Error creating test access'));
+        function createWeatherInfo(weatherStationId,weatherInfo) {
+            return $http.post(apiUrl+ '/weather-station/' + weatherStationId + '/weather-info/', weatherInfo).then(handleSuccess);
         }
 
         function updateWeatherInfo(weatherInfo) {
-            return $http.put(apiUrl, weatherInfo).then(handleSuccess, handleError('Error updating test'));
+            return $http.put(apiUrl + '/weather-info/', weatherInfo).then(handleSuccess);
         }
 
         function deleteWeatherInfo(weatherid) {
-            return $http.delete(apiUrl + weatherid).then(handleSuccess, handleError('Error deleting test'));
+            return $http.delete(apiUrl + '/weather-info/' + weatherid + '/').then(handleSuccess);
         }
-
+        function  deleteWeatherStation(weatherStationId) {
+            return $http.delete(apiUrl + '/weather-station/' + weatherStationId +'/');
+        }
+        function  createWeatherStation(weatherStation) {
+            return $http.post(apiUrl + '/weather-station/',weatherStation);
+        }
+        function updateWeatherStation(weatherStation){
+            return $http.put(apiUrl + '/weather-station/',weatherStation);
+        }
 
 
     }]);
