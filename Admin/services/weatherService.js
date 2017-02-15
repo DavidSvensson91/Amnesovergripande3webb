@@ -9,6 +9,14 @@ angular.module('myApp')
 
         var apiUrl = 'http://10.8.1.209:8080/weather-info/'; // TODO: export to config file
 
+        var handleSuccess = function (response) {
+            console.log('Request successfully executed..');
+            console.log(response.data);
+        };
+
+        var handleError = function (string) {
+            console.log(string);
+        }
 
 
         /*
@@ -48,13 +56,6 @@ angular.module('myApp')
             return $http.delete(apiUrl + weatherid).then(handleSuccess, handleError('Error deleting test'));
         }
 
-        var handleSuccess = function (response) {
-            console.log('Request successfully executed..');
-            console.log(response.data);
-        };
 
-        var handleError = function (string) {
-            console.log(string);
-        }
 
     }]);
