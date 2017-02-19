@@ -13,7 +13,7 @@ angular.module('myApp').controller('vaderdata',['$scope','$filter','$http','weat
     //addStation info.
     $scope.addStation = '';
 
-    $scope.date = moment().format('YYYY-MM-DD, h:mm:ss');
+    $scope.date = moment().format('YYYY-MM-DD');
 
     //Existerande molntyper från databasen.
     $scope.molntyp = {
@@ -21,7 +21,6 @@ angular.module('myApp').controller('vaderdata',['$scope','$filter','$http','weat
             {value: 'Valkmoln'},
             {value: 'Dimmoln'}
         ]
-
     };
 
     //Existernade vindriktningar från databasen.
@@ -35,27 +34,28 @@ angular.module('myApp').controller('vaderdata',['$scope','$filter','$http','weat
     // Hämta stationer existerande stationer från databasen.
     $scope.station = weatherService.getAllWeatherInfo();
 
-
     //För att lägga till väderdata.
-    $scope.vader = function(temperatur, date, lufttryck, luftfuktighet, vindstyrka, molnbashojd, himmel, molntyp, vindriktning) {
+    $scope.vader = function(temperatur, date, lufttryck, luftfuktighet, vindstyrka, molnbashojd, himmel) {
 
-        $scope.date =  1;//moment().format('YYYY-MM-DD, h:mm:ss');
+        $scope.date = moment().format('YYYY-MM-DD');
+        var ha = parseInt(date);
+        console.log("dgfsdgsdg" + ha);
 
+        var molntyp1 = $scope.molntyp.molntyp;
+        var vindriktning1 = $scope.vindriktning.vindriktning;
 
-        var vaderinfo = {"temp" : temperatur, "date": date, "airPressure" : lufttryck, "humidity" : luftfuktighet,
-            "windForce" : vindstyrka, "cloudBase" : molnbashojd, "okta" : himmel, "cloudType" : molntyp, "windDirection" : vindriktning};
-        
-        var jsonObrj = JSON.stringify(vaderinfo);
+        var vaderinfo = {"temp":  temperatur, "date": date, "airPressure": lufttryck, "humidity": luftfuktighet,
+            "windForce": vindstyrka, "cloudBase": molnbashojd, "okta": himmel, "cloudType": molntyp1, "windDirection": vindriktning1};
 
-        var stationId = document.getElementById('sel1').value;
+        var stationId = $scope.station.station;
+        var statId = {"weather_station_id": stationId};
 
-        var statId = {"id" : stationId};
+        var jsonStn = angular.toJson(statId);
+        var jsonObrj = angular.toJson(vaderinfo);
 
-        var jsonStn = JSON.stringify(statId);
+        weatherService.createWeatherInfo(stationId ,jsonObrj);
 
-        //weatherService.updateWeatherInfo(jsonObrj);
-
-        console.log(date, molntyp, vindriktning, temperatur, luftfuktighet, vindstyrka, molnbashojd, himmel, lufttryck, vaderinfo, jsonObrj);
+        console.log(jsonStn, jsonObrj);
     };
 
 
@@ -65,7 +65,13 @@ angular.module('myApp').controller('vaderdata',['$scope','$filter','$http','weat
 
     //För att lägga till stationer.
     $scope.addStations = function(addStation) {
-        var jsonObrjStation = JSON.stringify(addStation);
+        var jsonObrjStation = angular.toJson(addStation);
         weatherService.createWeatherStation(jsonObrjStation);
+    };
+
+    $scope.getVaderdata = function(){
+        var test2 = $scope.station.station;
+        $scope.getVaderdata = weatherService.getAllWeatherInfoByStation(test2);
+        console.log(test2)
     };
 }]);

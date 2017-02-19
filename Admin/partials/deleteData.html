@@ -3,15 +3,16 @@
     <p>På denna sida kan man söka efter väderdata utefter stationsnamn. Man kan också radera väderdata.</p>
 </section>
 
-<section class="form-section">
+<section ng-controller="vaderdata" class="form-section">
     <section class="col-xs-9">
 
         <section class="marginleft sokStation col-xs-5">
-            <label for="sel2">Välj station</label>
-            <select class="form-control" id="sel2">
-                <option>Stockholm</option>
-                <option>Göteborg</option>
-        </select>
+            <form>
+                <label for="sel5">Station</label>
+                <select id="sel5" class="form-control" name="station" ng-change="getVaderdata()" ng-model="station.station">
+                    <option ng-repeat="Object in station.$$state.value" ng-value="Object.id">{{Object.name}}</option>
+                </select>
+            </form>
         </section>
 
         <section class="deleteall col-xs-5">
@@ -35,18 +36,18 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <th>Stockholm</th>
-                <th>8c</th>
-                <th>37</th>
-                <th>2</th>
-                <th>2km</th>
-                <th>15%</th>
-                <th>8</th>
-                <th>Alla</th>
-                <th>Nord</th>
-                <th>13:37</th>
-                <th>22/11/2017</th>
+            <tr ng-repeat="Object in getVaderdata.$$state.value">
+                <th>{{Object.name}}</th>
+                <th>{{Object.temp}}</th>
+                <th>{{Object.humidity}}</th>
+                <th>{{Object.windForce}}</th>
+                <th>{{Object.cloudBase}}</th>
+                <th>{{Object.okta}}</th>
+                <th>{{Object.airPressure}}</th>
+                <th>{{Object.cloudType}}</th>
+                <th>{{Object.windDirection}}</th>
+                <th>{{}}</th>
+                <th>{{Object.date}}</th>
             </tr>
             </tbody>
         </table>
