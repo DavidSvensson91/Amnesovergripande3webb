@@ -8,7 +8,8 @@ angular.module('myApp').controller('vaderdata',['$scope','$filter','$http','weat
     $scope.lufttryck = '';
     $scope.molntyp = '';
     $scope.vindriktning = '';
-    weatherService.getAllWeatherInfo();
+    $scope.currentVaderData = '';
+    $scope.stations = weatherService.getAllWeatherInfo();
 
     //addStation info.
     $scope.addStation = '';
@@ -57,6 +58,7 @@ angular.module('myApp').controller('vaderdata',['$scope','$filter','$http','weat
 
         console.log(jsonStn, jsonObrj);
     };
+    
 
 
     // var getStation = $http.get('http://localhost:8080/weather-station/1', {'Content-Type': 'application/x-www-form-urlencoded'});
@@ -69,9 +71,8 @@ angular.module('myApp').controller('vaderdata',['$scope','$filter','$http','weat
         weatherService.createWeatherStation(jsonObrjStation);
     };
 
-    $scope.getVaderdata = function(){
-        var test2 = $scope.station.station;
-        $scope.getVaderdata = weatherService.getAllWeatherInfoByStation(test2);
-        console.log(test2)
-    };
+
+  /*  $scope.getVaderdata = function(){
+        $scope.currentVaderData = weatherService.getAllWeatherInfoByStation($scope.station.station);
+    };*/
 }]);

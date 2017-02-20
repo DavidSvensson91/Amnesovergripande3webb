@@ -11,7 +11,7 @@ angular.module('myApp')
 
         var handleSuccess = function (response) {
             console.log('Request successfully executed..');
-            console.table(response.data);
+           // console.table(response.data);
             return(response.data);
         };
 

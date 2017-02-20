@@ -9,8 +9,8 @@
         <section class="marginleft sokStation col-xs-5">
             <form>
                 <label for="sel5">Station</label>
-                <select id="sel5" class="form-control" name="station" ng-change="getVaderdata()" ng-model="station.station">
-                    <option ng-repeat="Object in station.$$state.value" ng-value="Object.id">{{Object.name}}</option>
+                <select id="sel5" class="form-control" name="station" ng-model="selectedStation">
+                    <option ng-repeat="Object in stations.$$state.value" ng-value="Object.id">{{Object.name}}</option>
                 </select>
             </form>
         </section>
@@ -35,8 +35,7 @@
                 <th>Datum</th>
             </tr>
             </thead>
-            <tbody>
-            <tr ng-repeat="Object in getVaderdata.$$state.value">
+            <tr ng-repeat="Object in stations.$$state.value[selectedStation].weatherInfo">
                 <th>{{Object.name}}</th>
                 <th>{{Object.temp}}</th>
                 <th>{{Object.humidity}}</th>
@@ -49,6 +48,7 @@
                 <th>{{}}</th>
                 <th>{{Object.date}}</th>
             </tr>
+            <tbody>
             </tbody>
         </table>
 
