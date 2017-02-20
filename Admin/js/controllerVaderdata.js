@@ -84,8 +84,9 @@ angular.module('myApp').controller('vaderdata',['$scope','$filter','$http','weat
         var jsonObrjStation = angular.toJson(AddedStation);
         weatherService.createWeatherStation(jsonObrjStation);
     };
-    
+
     $scope.deleteWeatherInfoAndUpdate = function deleteWeatherInfoAndUpdate(id) {
+        $scope.updateStations();
         console.log(id);
         weatherService.deleteWeatherInfo(id);
         $scope.updateStations();

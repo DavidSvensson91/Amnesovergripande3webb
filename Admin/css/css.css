@@ -7,7 +7,7 @@ label{
 }
 
 .form-section{
-    margin-left: 330px;
+    margin-left: 230px;
     margin-top: 20px;
 }
 
@@ -36,4 +36,8 @@ label{
 
 .frontpageheight{
     height: 258px;
+}
+
+.inputWidth{
+    width: 100px;
 }

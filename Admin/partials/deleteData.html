@@ -36,17 +36,16 @@
             </tr>
             </thead>
             <tr ng-repeat="Object in stations.$$state.value[selectedStation].weatherInfo">
-                <th>{{Object.name}}</th>
-                <th>{{Object.temp}}</th>
-                <th>{{Object.humidity}}</th>
-                <th>{{Object.windForce}}</th>
-                <th>{{Object.cloudBase}}</th>
-                <th>{{Object.okta}}</th>
-                <th>{{Object.airPressure}}</th>
-                <th>{{Object.cloudType}}</th>
-                <th>{{Object.windDirection}}</th>
+                <th><input class="inputWidth" ng-model="Object.temp"></th>
+                <th><input class="inputWidth" ng-model="Object.humidity"></th>
+                <th><input class="inputWidth" ng-model="Object.windForce"></th>
+                <th><input class="inputWidth" ng-model="Object.cloudBase"></th>
+                <th><input class="inputWidth" ng-model="Object.okta"></th>
+                <th><input class="inputWidth" ng-model="Object.airPressure"></th>
+                <th><input class="inputWidth" ng-model="Object.cloudType"></th>
+                <th><input class="inputWidth" ng-model="Object.windDirection"></th>
                 <th>{{}}</th>
-                <th>{{Object.date}}</th>
+                <th><input class="inputWidth" ng-model="Object.date"></th>
                 <th>
                     <button type="button" class="close" ng-click="deleteWeatherInfoAndUpdate(Object.id)"><span aria-hidden="true">&times;</span></button>
                 </th>
