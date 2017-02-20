@@ -20,7 +20,13 @@ angular.module('myApp').controller('vaderdata',['$scope','$filter','$http','weat
     $scope.molntyp = {
         availableOptions: [
             {value: 'Valkmoln'},
-            {value: 'Dimmoln'}
+            {value: 'Dimmoln'},
+            {value: 'Böljemoln'},
+            {value: 'Skiktmoln'},
+            {value: 'Fjädermoln'},
+            {value: 'Slöjmoln'},
+            {value: 'Makrillmoln'}
+
         ]
     };
 
@@ -28,7 +34,9 @@ angular.module('myApp').controller('vaderdata',['$scope','$filter','$http','weat
     $scope.vindriktning = {
         availableOptions: [
             {value: 'Nord'},
-            {value: 'Syd'}
+            {value: 'Syd'},
+            {value: 'Öst'},
+            {value: 'Väst'}
         ]
     };
 
