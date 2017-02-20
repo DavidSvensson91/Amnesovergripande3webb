@@ -9,7 +9,13 @@ angular.module('myApp').controller('vaderdata',['$scope','$filter','$http','weat
     $scope.molntyp = '';
     $scope.vindriktning = '';
     $scope.currentVaderData = '';
-    $scope.stations = weatherService.getAllWeatherInfo();
+    $scope.stations = '';
+
+
+    $scope.updateStations = function () {
+        $scope.stations = weatherService.getAllWeatherInfo();
+    };
+    $scope.updateStations();
 
     //addStation info.
     $scope.addStation = '';
@@ -74,9 +80,15 @@ angular.module('myApp').controller('vaderdata',['$scope','$filter','$http','weat
     // console.log(hej);
 
     //För att lägga till stationer.
-    $scope.addStations = function(addStation) {
-        var jsonObrjStation = angular.toJson(addStation);
+    $scope.addStations = function(AddedStation) {
+        var jsonObrjStation = angular.toJson(AddedStation);
         weatherService.createWeatherStation(jsonObrjStation);
+    };
+    
+    $scope.deleteWeatherInfoAndUpdate = function deleteWeatherInfoAndUpdate(id) {
+        console.log(id);
+        weatherService.deleteWeatherInfo(id);
+        $scope.updateStations();
     };
 
 
