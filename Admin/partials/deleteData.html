@@ -10,7 +10,7 @@
             <form>
                 <label for="sel5">Station</label>
                 <select id="sel5" class="form-control" name="station" ng-model="selectedStation">
-                    <option ng-repeat="Object in stations.$$state.value" ng-value="Object.id">{{Object.name}}</option>
+                    <option ng-repeat="Object in stations.$$state.value" ng-value="$index">{{Object.name}}</option>
                 </select>
             </form>
         </section>
