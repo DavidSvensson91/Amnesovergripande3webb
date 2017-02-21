@@ -47,7 +47,7 @@
                 <th><input class="inputWidth" ng-model="Object.date"></th>
                 <th>
                     <button type="button" class="close" ng-click="UpdateWeatherInfo(Object.id, Object.temp, Object.date, Object.airPressure, Object.humidity, Object.windForce, Object.cloudBase, Object.okta,
-                    Object.cloudType, Object.windDirection)"><span aria-hidden="true">Update</span></button>
+                    Object.cloudType, Object.windDirection , stations.$$state.value[selectedStation].id )"><span aria-hidden="true">Update</span></button>
                 </th>
                 <th>
                     <button type="button" class="close" ng-click="deleteWeatherInfoAndUpdate(Object.id)"><span aria-hidden="true">&times;</span></button>
