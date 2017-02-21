@@ -54,7 +54,7 @@ angular.module('myApp')
         }
 
         function updateWeatherInfo(weatherInfo) {
-            return $http.put(apiUrl + '/weather-info/', weatherInfo).then(handleSuccess);
+            return $http.put(apiUrl + '/weather-station/'+ weatherStationId + '/weather-info/', weatherInfo).then(handleSuccess);
         }
 
         function deleteWeatherInfo(weatherid) {
