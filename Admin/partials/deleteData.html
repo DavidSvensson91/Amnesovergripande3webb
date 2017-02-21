@@ -9,7 +9,7 @@
         <section class="marginleft sokStation col-xs-5">
             <form>
                 <label for="sel5">Station</label>
-                <select id="sel5" class="form-control" name="station" ng-model="selectedStation">
+                <select id="sel5" class="form-control" name="selectedStation" ng-model="selectedStation">
                     <option ng-repeat="Object in stations.$$state.value" ng-value="$index">{{Object.name}}</option>
                 </select>
             </form>
@@ -19,10 +19,9 @@
             <button type="button" class="btn btn-danger btn-block">Ta bort all väderdata</button>
         </section>
 
-        <table class="  table table-striped col-lg-12   ">
+        <table class="table table-striped col-lg-12">
             <thead>
             <tr>
-                <th>Station</th>
                 <th>Temp</th>
                 <th>Luftfuktighet</th>
                 <th>Vindstyrka</th>
@@ -47,15 +46,15 @@
                 <th>{{}}</th>
                 <th><input class="inputWidth" ng-model="Object.date"></th>
                 <th>
+                    <button type="button" class="close" ng-click="UpdateWeatherInfo(Object.id, Object.temp, Object.date, Object.airPressure, Object.humidity, Object.windForce, Object.cloudBase, Object.okta,
+                    Object.cloudType, Object.windDirection)"><span aria-hidden="true">Update</span></button>
+                </th>
+                <th>
                     <button type="button" class="close" ng-click="deleteWeatherInfoAndUpdate(Object.id)"><span aria-hidden="true">&times;</span></button>
                 </th>
             </tr>
             <tbody>
             </tbody>
         </table>
-
-        <section class="col-xs-5 marginleft">
-            <button type="button" class="btn btn-danger btn-block">Ta bort markerad väderdata</button>
-        </section>
     </section>
 </section>

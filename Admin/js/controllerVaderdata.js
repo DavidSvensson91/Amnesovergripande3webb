@@ -11,7 +11,6 @@ angular.module('myApp').controller('vaderdata',['$scope','$filter','$http','weat
     $scope.currentVaderData = '';
     $scope.stations = '';
 
-
     $scope.updateStations = function () {
         $scope.stations = weatherService.getAllWeatherInfo();
     };
@@ -89,6 +88,21 @@ angular.module('myApp').controller('vaderdata',['$scope','$filter','$http','weat
         $scope.updateStations();
         console.log(id);
         weatherService.deleteWeatherInfo(id);
+        $scope.updateStations();
+    };
+
+    $scope.UpdateWeatherInfo = function UpdateWeatherInfo(id, temp, date, airPressure, humidity, windForce, cloudBase, okta, cloudType, windDirection) {
+
+        var test4 = $scope.stations;
+
+        console.log(test4);
+
+        var vaderinfo2 = {"id": id, "temp":  temp, "date": date, "airPressure": airPressure, "humidity": humidity,
+            "windForce": windForce, "cloudBase": cloudBase, "okta": okta, "cloudType": cloudType, "windDirection": windDirection};
+        var jsonObrj2 = angular.toJson(vaderinfo2);
+
+        $scope.updateStations();
+        weatherService.updateWeatherInfo(jsonObrj2);
         $scope.updateStations();
     };
 
