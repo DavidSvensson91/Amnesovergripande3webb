@@ -6,22 +6,22 @@
 <section ng-controller="vaderdata" class="form-section">
         <section class="col-xs-3">
             <label for="input2">Temperatur</label>
-            <input ng-model="temperatur" type="number" class="form-control" id="input2">
+            <input ng-model="temperatur" type="number" maxlength="3" placeholder="°C" class="form-control" id="input2">
 
             <label for="input3">Luftfuktighet</label>
-            <input ng-model="luftfuktighet" type="number" class="form-control" id="input3">
+            <input ng-model="luftfuktighet" type="number" maxlength="3" placeholder="°%" class="form-control" id="input3">
 
             <label for="input4">Vindstyrka</label>
-            <input ng-model="vindstyrka" type="number" class="form-control" id="input4">
+            <input ng-model="vindstyrka" type="number" maxlength="3" placeholder="°m/s" class="form-control" id="input4">
 
             <label for="input5">Molnbashöjd</label>
-            <input ng-model="molnbashojd" type="number" class="form-control" id="input5">
+            <input ng-model="molnbashojd" type="number" maxlength="3" placeholder="°m" class="form-control" id="input5">
 
-            <label for="input6">Mängd moln i %</label>
-            <input ng-model="himmel" type="number" min="0" max="8" class="form-control" id="input6">
+            <label for="input6">Okta</label>
+            <input ng-model="himmel" type="number" min="0" max="8" maxlength="3" placeholder="Värde mellan 0 och 8" class="form-control" id="input6">
 
             <label for="input7">Lufttryck</label>
-            <input ng-model="lufttryck" type="number" class="form-control" id="input7">
+            <input ng-model="lufttryck" type="number" maxlength="3" placeholder="°%" class="form-control" id="input7">
 
             <button ng-click="vader(temperatur, date, lufttryck, luftfuktighet, vindstyrka, molnbashojd, himmel, molntyp.molntyp, vindriktning.vindriktning)"
                     type="button" class="vaderbutton btn btn-success btn-block">Lägg till väderdata</button>
@@ -30,17 +30,17 @@
     <section class="col-xs-3">
         <form>
             <label for="sel1">Station</label>
-            <select id="sel1" class="form-control" name="station" ng-model="station.station">
+            <select id="sel1" class="form-control" placeholder="Välj station" name="station" ng-model="station.station">
                 <option ng-repeat="Object in station.$$state.value" ng-value="Object.id">{{Object.name}}</option>
             </select>
 
             <label for="sel2">Molntyp</label>
-            <select id="sel2" class="form-control station" name="molntyp" ng-model="molntyp.molntyp">
+            <select id="sel2" class="form-control station" name="molntyp" placeholder="Välj molntyp" ng-model="molntyp.molntyp">
                 <option ng-repeat="option in molntyp.availableOptions" ng-value="option.value">{{option.value}}</option>
             </select>
 
             <label for="sel3">Vindriktning</label>
-            <select id="sel3" class="form-control" name="vindriktning" ng-model="vindriktning.vindriktning">
+            <select id="sel3" class="form-control" name="vindriktning" placeholder="Välj vindriktning" ng-model="vindriktning.vindriktning">
                 <option ng-repeat="option in vindriktning.availableOptions" ng-value="option.value">{{option.value}}</option>
             </select>
         </form>

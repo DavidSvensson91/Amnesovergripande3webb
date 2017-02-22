@@ -35,7 +35,8 @@ angular.module('myApp').controller('vaderdata',['$scope','$filter','$http','weat
             {value: 'Skiktmoln'},
             {value: 'Fjädermoln'},
             {value: 'Slöjmoln'},
-            {value: 'Makrillmoln'}
+            {value: 'Makrillmoln'},
+            {value: 'Inga moln'}
 
         ]
     };
