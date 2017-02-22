@@ -1,4 +1,4 @@
-angular.module('myApp').controller('vaderdata',['$scope','$filter','$http','weatherService',function($scope, $filter ,$http, weatherService){
+angular.module('myApp').controller('vaderdata', ['$scope', '$filter', '$http', 'weatherService', function ($scope, $filter, $http, weatherService) {
     $scope.station = '';
     $scope.temperatur = '';
     $scope.luftfuktighet = '';
@@ -8,15 +8,14 @@ angular.module('myApp').controller('vaderdata',['$scope','$filter','$http','weat
     $scope.lufttryck = '';
     $scope.molntyp = '';
     $scope.vindriktning = '';
-    $scope.currentVaderData = '';
     $scope.stations = '';
     $scope.tableArray = '';
 
 
-    $scope.updateStations =  function () {
+    $scope.updateStations = function () {
         $scope.stations = weatherService.getAllWeatherInfo();
     };
-    
+
     $scope.updateStations();
 
     //addStation info.
@@ -53,7 +52,7 @@ angular.module('myApp').controller('vaderdata',['$scope','$filter','$http','weat
     $scope.station = weatherService.getAllWeatherInfo();
 
     //För att lägga till väderdata.
-    $scope.vader = function(temperatur, date, lufttryck, luftfuktighet, vindstyrka, molnbashojd, himmel) {
+    $scope.vader = function (temperatur, date, lufttryck, luftfuktighet, vindstyrka, molnbashojd, himmel) {
 
         $scope.date = moment().format('YYYY-MM-DD');
         var ha = parseInt(date);
@@ -62,8 +61,17 @@ angular.module('myApp').controller('vaderdata',['$scope','$filter','$http','weat
         var molntyp1 = $scope.molntyp.molntyp;
         var vindriktning1 = $scope.vindriktning.vindriktning;
 
-        var vaderinfo = {"temp":  temperatur, "date": date, "airPressure": lufttryck, "humidity": luftfuktighet,
-            "windForce": vindstyrka, "cloudBase": molnbashojd, "okta": himmel, "cloudType": molntyp1, "windDirection": vindriktning1};
+        var vaderinfo = {
+            "temp": temperatur,
+            "date": date,
+            "airPressure": lufttryck,
+            "humidity": luftfuktighet,
+            "windForce": vindstyrka,
+            "cloudBase": molnbashojd,
+            "okta": himmel,
+            "cloudType": molntyp1,
+            "windDirection": vindriktning1
+        };
 
         var stationId = $scope.station.station;
         var statId = {"weather_station_id": stationId};
@@ -71,64 +79,56 @@ angular.module('myApp').controller('vaderdata',['$scope','$filter','$http','weat
         var jsonStn = angular.toJson(statId);
         var jsonObrj = angular.toJson(vaderinfo);
 
-        weatherService.createWeatherInfo(stationId ,jsonObrj);
+        weatherService.createWeatherInfo(stationId, jsonObrj);
 
         console.log(jsonStn, jsonObrj);
     };
-    
-
 
 
     //För att lägga till stationer.
-    $scope.addStations = function(AddedStation) {
+    $scope.addStations = function (AddedStation) {
         var jsonObrjStation = angular.toJson(AddedStation);
         weatherService.createWeatherStation(jsonObrjStation);
     };
 
     $scope.deleteWeatherInfoAndUpdate = function deleteWeatherInfoAndUpdate(id) {
         $scope.updateStations();
-        console.log(id);
         weatherService.deleteWeatherInfo(id);
         $scope.updateStations();
     };
 
-    $scope.deleteAllWeatherInfoAndStations = function deleteAllWeatherInfoAndStations(){
-
-            var i = 0;
-            for(i = 0 ; i < $scope.stations.$$state.value.length ; ++i){
-                deleteWeatherStation($scope.stations.$$state.value[i].id);
-            }
-
+    $scope.deleteAllWeatherInfoAndStations = function deleteAllWeatherInfoAndStations() {
+        for (var i = 0; i < $scope.stations.$$state.value.length; ++i) {
+            weatherService.deleteWeatherStation($scope.stations.$$state.value[i].id);
+        }
     };
-    function deleteWeatherStation(id){
-        weatherService.deleteWeatherStation(id);
-    }
 
     $scope.UpdateWeatherInfo = function UpdateWeatherInfo(id, temp, date, airPressure, humidity, windForce, cloudBase, okta, cloudType, windDirection, stationID) {
-             var test4 = $scope.stations;
-             console.log(test4);
-             var vaderinfo2 = {"id": id, "temp":  temp, "date": date, "airPressure": airPressure, "humidity": humidity,
-                 "windForce": windForce, "cloudBase": cloudBase, "okta": okta, "cloudType": cloudType, "windDirection": windDirection};
-            var jsonObrj2 = angular.toJson(vaderinfo2);
-               $scope.updateStations();
-                 weatherService.updateWeatherInfo(stationID,jsonObrj2);
-               $scope.updateStations();
+        var test4 = $scope.stations;
+        console.log(test4);
+        var vaderinfo2 = {
+            "id": id,
+            "temp": temp,
+            "date": date,
+            "airPressure": airPressure,
+            "humidity": humidity,
+            "windForce": windForce,
+            "cloudBase": cloudBase,
+            "okta": okta,
+            "cloudType": cloudType,
+            "windDirection": windDirection
+        };
+        var jsonObrj2 = angular.toJson(vaderinfo2);
+        $scope.updateStations();
+        weatherService.updateWeatherInfo(stationID, jsonObrj2);
+        $scope.updateStations();
     };
-    
+
     $scope.filterWeatherInfoList = function filterWeatherInfoList(searchvalue) {
-
-        $scope.weatherInfo = weatherService.getAllWeatherInfoWithoutStations();
-
         weatherService.getAllWeatherInfoWithoutStations().then(function (response) {
-            $scope.tableArray = search(response.data,searchvalue);
+            $scope.tableArray = search(response.data, searchvalue);
         });
-
-
-
-
     };
-    // $scope.filterWeatherInfoList();
-
 
     function search(source, value) {
         var results = [];
@@ -137,17 +137,10 @@ angular.module('myApp').controller('vaderdata',['$scope','$filter','$http','weat
 
         for (index = 0; index < source.length; ++index) {
             entry = source[index];
-            if(entry.temp == value || entry.airPressure == value || entry.windForce == value || entry.okta == value || entry.cloudBase  == value || entry.humidity == value ){
+            if (entry.temp == value || entry.airPressure == value || entry.windForce == value || entry.okta == value || entry.cloudBase == value || entry.humidity == value) {
                 results.push(entry);
             }
         }
-        console.table(results);
-
         return results;
     }
-
-
-  /*  $scope.getVaderdata = function(){
-        $scope.currentVaderData = weatherService.getAllWeatherInfoByStation($scope.station.station);
-    };*/
 }]);
