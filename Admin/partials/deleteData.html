@@ -13,46 +13,92 @@
                     <option ng-repeat="Object in stations.$$state.value" ng-value="$index">{{Object.name}}</option>
                 </select>
             </form>
+            <div ng-if="myVar">
+                <input id="filter" class="inputWidth" ng-model="searchvalue">
+                <button ng-click="filterWeatherInfoList(searchvalue)">Search</button>
+            </div>
         </section>
 
         <section class="deleteall col-xs-5">
             <button type="button" class="btn btn-danger btn-block">Ta bort all väderdata</button>
         </section>
+        <input type="checkbox" ng-model="myVar" ng-init="myVar = true">
+        <div ng-if="!myVar">
+            <table class="  table table-striped col-lg-12   ">
+                <thead>
+                <tr>
+                    <th>Station</th>
+                    <th>Temp</th>
+                    <th>Luftfuktighet</th>
+                    <th>Vindstyrka</th>
+                    <th>Molnbashöjd</th>
+                    <th>Okta</th>
+                    <th>Lufttryck</th>
+                    <th>Molntyp</th>
+                    <th>Vindriktning</th>
+                    <th>Tid</th>
+                    <th>Datum</th>
+                </tr>
+                </thead>
+                <tr ng-repeat="Object in stations.$$state.value[selectedStation].weatherInfo">
+                    <th><input class="inputWidth" ng-model="Object.temp"></th>
+                    <th><input class="inputWidth" ng-model="Object.humidity"></th>
+                    <th><input class="inputWidth" ng-model="Object.windForce"></th>
+                    <th><input class="inputWidth" ng-model="Object.cloudBase"></th>
+                    <th><input class="inputWidth" ng-model="Object.okta"></th>
+                    <th><input class="inputWidth" ng-model="Object.airPressure"></th>
+                    <th><input class="inputWidth" ng-model="Object.cloudType"></th>
+                    <th><input class="inputWidth" ng-model="Object.windDirection"></th>
+                    <th>{{}}</th>
+                    <th><input class="inputWidth" ng-model="Object.date"></th>
+                    <th>
+                        <button type="button" class="close" ng-click="deleteWeatherInfoAndUpdate(Object.id)"><span
+                                aria-hidden="true">&times;</span></button>
+                    </th>
+                </tr>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
 
-        <table class="  table table-striped col-lg-12   ">
-            <thead>
-            <tr>
-                <th>Station</th>
-                <th>Temp</th>
-                <th>Luftfuktighet</th>
-                <th>Vindstyrka</th>
-                <th>Molnbashöjd</th>
-                <th>Okta</th>
-                <th>Lufttryck</th>
-                <th>Molntyp</th>
-                <th>Vindriktning</th>
-                <th>Tid</th>
-                <th>Datum</th>
-            </tr>
-            </thead>
-            <tr ng-repeat="Object in stations.$$state.value[selectedStation].weatherInfo">
-                <th><input class="inputWidth" ng-model="Object.temp"></th>
-                <th><input class="inputWidth" ng-model="Object.humidity"></th>
-                <th><input class="inputWidth" ng-model="Object.windForce"></th>
-                <th><input class="inputWidth" ng-model="Object.cloudBase"></th>
-                <th><input class="inputWidth" ng-model="Object.okta"></th>
-                <th><input class="inputWidth" ng-model="Object.airPressure"></th>
-                <th><input class="inputWidth" ng-model="Object.cloudType"></th>
-                <th><input class="inputWidth" ng-model="Object.windDirection"></th>
-                <th>{{}}</th>
-                <th><input class="inputWidth" ng-model="Object.date"></th>
-                <th>
-                    <button type="button" class="close" ng-click="deleteWeatherInfoAndUpdate(Object.id)"><span aria-hidden="true">&times;</span></button>
-                </th>
-            </tr>
-            <tbody>
-            </tbody>
-        </table>
+
+        <div ng-if="myVar">
+            <table class="  table table-striped col-lg-12   ">
+                <thead>
+                <tr>
+                    <th>Station</th>
+                    <th>Temp</th>
+                    <th>Luftfuktighet</th>
+                    <th>Vindstyrka</th>
+                    <th>Molnbashöjd</th>
+                    <th>Okta</th>
+                    <th>Lufttryck</th>
+                    <th>Molntyp</th>
+                    <th>Vindriktning</th>
+                    <th>Tid</th>
+                    <th>Datum</th>
+                </tr>
+                </thead>
+                <tr ng-repeat="Object in tableArray">
+                    <th><input class="inputWidth" ng-model="Object.temp"></th>
+                    <th><input class="inputWidth" ng-model="Object.humidity"></th>
+                    <th><input class="inputWidth" ng-model="Object.windForce"></th>
+                    <th><input class="inputWidth" ng-model="Object.cloudBase"></th>
+                    <th><input class="inputWidth" ng-model="Object.okta"></th>
+                    <th><input class="inputWidth" ng-model="Object.airPressure"></th>
+                    <th><input class="inputWidth" ng-model="Object.cloudType"></th>
+                    <th><input class="inputWidth" ng-model="Object.windDirection"></th>
+                    <th>{{}}</th>
+                    <th><input class="inputWidth" ng-model="Object.date"></th>
+                    <th>
+                        <button type="button" class="close" ng-click="deleteWeatherInfoAndUpdate(Object.id)"><span
+                                aria-hidden="true">&times;</span></button>
+                    </th>
+                </tr>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
 
         <section class="col-xs-5 marginleft">
             <button type="button" class="btn btn-danger btn-block">Ta bort markerad väderdata</button>

@@ -9,10 +9,14 @@ angular.module('myApp')
 
         var apiUrl = 'http://localhost:8080'; // TODO: export to config file
 
+        var responses = '';
+
         var handleSuccess = function (response) {
             console.log('Request successfully executed..');
-           // console.table(response.data);
-            return(response.data);
+            // console.table(response.data);
+            // console.log(responses);
+
+                return response.data;
         };
 
         var handleError = function (string) {
@@ -26,6 +30,7 @@ angular.module('myApp')
 
         service.getAllWeatherInfo = getAllWeatherInfo;
         service.getAllWeatherInfoByStation = getAllWeatherInfoByStation;
+        service.getAllWeatherInfoWithoutStations = getAllWeatherInfoWithoutStations;
         service.getWeatherInfoById = getWeatherInfoById;
         service.createWeatherInfo = createWeatherInfo;
         service.updateWeatherInfo = updateWeatherInfo;
@@ -41,6 +46,14 @@ angular.module('myApp')
             return $http.get(apiUrl + '/weather-station/').then(handleSuccess);
         }
 
+        function getAllWeatherInfoWithoutStations() {
+            var response = $http.get(apiUrl + '/weather-info/').then(function (response) {
+                return response;
+            });
+            return response;
+        }
+        
+
         function getAllWeatherInfoByStation(weatherStationId) {
             return $http.get(apiUrl + '/weather-station/' + weatherStationId + '/weather-info/').then(handleSuccess);
         }
@@ -53,7 +66,7 @@ angular.module('myApp')
             return $http.post(apiUrl+ '/weather-station/' + weatherStationId + '/weather-info/', weatherInfo).then(handleSuccess);
         }
 
-        function updateWeatherInfo(weatherInfo) {
+        function updateWeatherInfo(weatherInfo,weatherStationId) {
             return $http.put(apiUrl + '/weather-info/', weatherInfo).then(handleSuccess);
         }
 

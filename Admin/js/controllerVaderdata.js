@@ -10,11 +10,15 @@ angular.module('myApp').controller('vaderdata',['$scope','$filter','$http','weat
     $scope.vindriktning = '';
     $scope.currentVaderData = '';
     $scope.stations = '';
+    $scope.weatherInfo = '';
+    $scope.searchvalue = '';
+    $scope.tableArray = '';
 
 
-    $scope.updateStations = function () {
+    $scope.updateStations =  function () {
         $scope.stations = weatherService.getAllWeatherInfo();
     };
+    
     $scope.updateStations();
 
     //addStation info.
@@ -75,9 +79,6 @@ angular.module('myApp').controller('vaderdata',['$scope','$filter','$http','weat
     
 
 
-    // var getStation = $http.get('http://localhost:8080/weather-station/1', {'Content-Type': 'application/x-www-form-urlencoded'});
-    // var hej = JSON.stringify(getStation);
-    // console.log(hej);
 
     //För att lägga till stationer.
     $scope.addStations = function(AddedStation) {
@@ -91,6 +92,42 @@ angular.module('myApp').controller('vaderdata',['$scope','$filter','$http','weat
         weatherService.deleteWeatherInfo(id);
         $scope.updateStations();
     };
+    
+    $scope.filterWeatherInfoList = function filterWeatherInfoList(searchvalue) {
+
+        $scope.weatherInfo = weatherService.getAllWeatherInfoWithoutStations();
+
+        weatherService.getAllWeatherInfoWithoutStations().then(function (response) {
+            $scope.weatherInfo =  response.data;
+
+            console.log($scope.weatherInfo[0].temp);
+
+            $scope.tableArray = search($scope.weatherInfo,searchvalue);
+            console.log($scope.tableArray);
+        });
+
+
+
+
+    };
+    // $scope.filterWeatherInfoList();
+
+
+    function search(source, value) {
+        var results = [];
+        var index;
+        var entry;
+
+        for (index = 0; index < source.length; ++index) {
+            entry = source[index];
+            if(entry.temp == value || entry.airPressure == value || entry.windForce == value || entry.okta == value || entry.cloudBase  == value || entry.humidity == value ){
+                results.push(entry);
+            }
+        }
+        console.table(results);
+
+        return results;
+    }
 
 
   /*  $scope.getVaderdata = function(){
