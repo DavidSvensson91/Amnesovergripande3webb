@@ -3,7 +3,7 @@
     <p>På denna sida lägger man till väderdata, stationer och molntyper.</p>
 </section>
 
-<section ng-controller="vaderdata" class="form-section">
+<form ng-controller="vaderdata" class="form-section">
         <section class="col-xs-3">
             <label for="input2">Temperatur</label>
             <input ng-model="temperatur" type="number" maxlength="3" placeholder="°C" class="form-control" id="input2">
@@ -81,4 +81,4 @@
         <input ng-model="addStation" class="form-control" id="inputS1">
         <button ng-click="addStations(addStation)" type="button" class="vaderbutton btn btn-success btn-block">Lägg till station</button>
     </section>
-</section>
+</form>
