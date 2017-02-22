@@ -20,9 +20,10 @@
         </section>
 
         <section class="deleteall col-xs-5">
-            <button type="button" class="btn btn-danger btn-block">Ta bort all väderdata</button>
+            <button type="button" class="btn btn-danger btn-block" ng-click="deleteAllWeatherInfoAndStations()">Ta bort all väderdata</button>
         </section>
-        <input type="checkbox" ng-model="myVar" ng-init="myVar = true">
+        <label for="tabletype">Filtertyp Station eller sök</label>
+        <input id="tabletype" type="checkbox" ng-model="myVar" ng-init="myVar = true">
         <div ng-if="!myVar">
             <table class="  table table-striped col-lg-12   ">
                 <thead>

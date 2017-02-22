@@ -10,8 +10,6 @@ angular.module('myApp').controller('vaderdata',['$scope','$filter','$http','weat
     $scope.vindriktning = '';
     $scope.currentVaderData = '';
     $scope.stations = '';
-    $scope.weatherInfo = '';
-    $scope.searchvalue = '';
     $scope.tableArray = '';
 
 
@@ -94,6 +92,18 @@ angular.module('myApp').controller('vaderdata',['$scope','$filter','$http','weat
         $scope.updateStations();
     };
 
+    $scope.deleteAllWeatherInfoAndStations = function deleteAllWeatherInfoAndStations(){
+
+            var i = 0;
+            for(i = 0 ; i < $scope.stations.$$state.value.length ; ++i){
+                deleteWeatherStation($scope.stations.$$state.value[i].id);
+            }
+
+    };
+    function deleteWeatherStation(id){
+        weatherService.deleteWeatherStation(id);
+    }
+
     $scope.UpdateWeatherInfo = function UpdateWeatherInfo(id, temp, date, airPressure, humidity, windForce, cloudBase, okta, cloudType, windDirection, stationID) {
              var test4 = $scope.stations;
              console.log(test4);
@@ -110,12 +120,7 @@ angular.module('myApp').controller('vaderdata',['$scope','$filter','$http','weat
         $scope.weatherInfo = weatherService.getAllWeatherInfoWithoutStations();
 
         weatherService.getAllWeatherInfoWithoutStations().then(function (response) {
-            $scope.weatherInfo =  response.data;
-
-            console.log($scope.weatherInfo[0].temp);
-
-            $scope.tableArray = search($scope.weatherInfo,searchvalue);
-            console.log($scope.tableArray);
+            $scope.tableArray = search(response.data,searchvalue);
         });
 
 
