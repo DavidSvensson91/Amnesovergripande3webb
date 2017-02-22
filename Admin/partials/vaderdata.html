@@ -30,17 +30,17 @@
     <section class="col-xs-3">
         <form>
             <label for="sel1">Station</label>
-            <select id="sel1" class="form-control" placeholder="Välj station" name="station" ng-model="station.station">
+            <select id="sel1" class="form-control" name="station" ng-model="station.station">
                 <option ng-repeat="Object in station.$$state.value" ng-value="Object.id">{{Object.name}}</option>
             </select>
 
             <label for="sel2">Molntyp</label>
-            <select id="sel2" class="form-control station" name="molntyp" placeholder="Välj molntyp" ng-model="molntyp.molntyp">
+            <select id="sel2" class="form-control station" name="molntyp" ng-model="molntyp.molntyp">
                 <option ng-repeat="option in molntyp.availableOptions" ng-value="option.value">{{option.value}}</option>
             </select>
 
             <label for="sel3">Vindriktning</label>
-            <select id="sel3" class="form-control" name="vindriktning" placeholder="Välj vindriktning" ng-model="vindriktning.vindriktning">
+            <select id="sel3" class="form-control" name="vindriktning" ng-model="vindriktning.vindriktning">
                 <option ng-repeat="option in vindriktning.availableOptions" ng-value="option.value">{{option.value}}</option>
             </select>
         </form>
