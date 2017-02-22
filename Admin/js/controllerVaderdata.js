@@ -137,7 +137,16 @@ angular.module('myApp').controller('vaderdata', ['$scope', '$filter', '$http', '
 
         for (index = 0; index < source.length; ++index) {
             entry = source[index];
-            if (entry.temp == value || entry.airPressure == value || entry.windForce == value || entry.okta == value || entry.cloudBase == value || entry.humidity == value) {
+            if (entry.temp == value ||
+                entry.airPressure == value ||
+                entry.windForce == value ||
+                entry.okta == value ||
+                entry.cloudBase == value ||
+                entry.humidity == value ||
+                entry.windDirection.toUpperCase() == value.toUpperCase() ||
+                entry.cloudType.toUpperCase() == value.toUpperCase() ||
+                entry.date == value
+            ) {
                 results.push(entry);
             }
         }
