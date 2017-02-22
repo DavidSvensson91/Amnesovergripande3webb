@@ -9,19 +9,19 @@
             <input ng-model="temperatur" type="number" maxlength="3" placeholder="°C" class="form-control" id="input2">
 
             <label for="input3">Luftfuktighet</label>
-            <input ng-model="luftfuktighet" type="number" maxlength="3" placeholder="°%" class="form-control" id="input3">
+            <input ng-model="luftfuktighet" type="number" maxlength="3" placeholder="%" class="form-control" id="input3">
 
             <label for="input4">Vindstyrka</label>
-            <input ng-model="vindstyrka" type="number" maxlength="3" placeholder="°m/s" class="form-control" id="input4">
+            <input ng-model="vindstyrka" type="number" maxlength="3" placeholder="m/s" class="form-control" id="input4">
 
             <label for="input5">Molnbashöjd</label>
-            <input ng-model="molnbashojd" type="number" maxlength="3" placeholder="°m" class="form-control" id="input5">
+            <input ng-model="molnbashojd" type="number" maxlength="3" placeholder="m" class="form-control" id="input5">
 
             <label for="input6">Okta</label>
             <input ng-model="himmel" type="number" min="0" max="8" maxlength="3" placeholder="Värde mellan 0 och 8" class="form-control" id="input6">
 
             <label for="input7">Lufttryck</label>
-            <input ng-model="lufttryck" type="number" maxlength="3" placeholder="°%" class="form-control" id="input7">
+            <input ng-model="lufttryck" type="number" maxlength="3" placeholder="%" class="form-control" id="input7">
 
             <button ng-click="vader(temperatur, date, lufttryck, luftfuktighet, vindstyrka, molnbashojd, himmel, molntyp.molntyp, vindriktning.vindriktning)"
                     type="button" class="vaderbutton btn btn-success btn-block">Lägg till väderdata</button>
