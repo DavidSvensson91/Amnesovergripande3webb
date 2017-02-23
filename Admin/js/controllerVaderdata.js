@@ -19,7 +19,7 @@ angular.module('myApp').controller('vaderdata', ['$scope', '$filter', '$http', '
     $scope.updateStations();
 
     //addStation info.
-    $scope.addStation = '';
+    //$scope.addStation = '';
 
     $scope.date = moment().format('YYYY-MM-DD h:mm:ss');
 
