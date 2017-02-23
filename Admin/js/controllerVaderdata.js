@@ -19,7 +19,7 @@ angular.module('myApp').controller('vaderdata', ['$scope', '$filter', '$http', '
     $scope.updateStations();
 
     //addStation info.
-    //$scope.addStation = '';
+    $scope.addStation = '';
 
     $scope.date = moment().format('YYYY-MM-DD h:mm:ss');
 
@@ -43,13 +43,22 @@ angular.module('myApp').controller('vaderdata', ['$scope', '$filter', '$http', '
         availableOptions: [
             {value: 'Nord'},
             {value: 'Syd'},
-            {value: 'Öst'},
-            {value: 'Väst'}
+            {value: 'Ost'},
+            {value: 'Väst'},
+
+            {value: 'Nordost'},
+            {value: 'Nordväst'},
+
+            {value: 'Sydost'},
+            {value: 'Sydväst'}
         ]
     };
 
     // Hämta stationer existerande stationer från databasen.
-    $scope.station = weatherService.getAllWeatherInfo();
+    $scope.getStations = function () {
+        $scope.station = weatherService.getAllWeatherInfo();
+    };
+    $scope.getStations();
 
     //För att lägga till väderdata.
     $scope.vader = function (temperatur, date, lufttryck, luftfuktighet, vindstyrka, molnbashojd, himmel) {
@@ -81,6 +90,16 @@ angular.module('myApp').controller('vaderdata', ['$scope', '$filter', '$http', '
 
         weatherService.createWeatherInfo(stationId, jsonObrj);
 
+        $scope.station = '';
+        $scope.temperatur = '';
+        $scope.luftfuktighet = '';
+        $scope.vindstyrka = '';
+        $scope.molnbashojd = '';
+        $scope.himmel = '';
+        $scope.lufttryck = '';
+        $scope.molntyp = '';
+        $scope.vindriktning = '';
+
         console.log(jsonStn, jsonObrj);
     };
 
@@ -89,6 +108,8 @@ angular.module('myApp').controller('vaderdata', ['$scope', '$filter', '$http', '
     $scope.addStations = function (AddedStation) {
         var jsonObrjStation = angular.toJson(AddedStation);
         weatherService.createWeatherStation(jsonObrjStation);
+        $scope.getStations();
+        $scope.addStation = '';
     };
 
     $scope.deleteWeatherInfoAndUpdate = function deleteWeatherInfoAndUpdate(id) {

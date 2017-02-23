@@ -45,3 +45,11 @@ label{
 .inputWidth2{
     width: 150px;
 }
+
+#pushThatShit{
+    margin-top: 20px;
+}
+
+.inline{
+    display: inline;
+}

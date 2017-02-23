@@ -13,9 +13,10 @@
                     <option ng-repeat="Object in stations.$$state.value" ng-value="$index">{{Object.name}}</option>
                 </select>
             </form>
-            <div ng-if="myVar">
-                <input id="filter" class="inputWidth" ng-model="searchvalue">
-                <button ng-click="filterWeatherInfoList(searchvalue)">Search</button>
+
+            <div id="pushThatShit" ng-if="myVar">
+                <input id="filter" class="form-control" ng-model="searchvalue">
+                <button class="btn btn-danger btn-block" ng-click="filterWeatherInfoList(searchvalue)">Search</button>
             </div>
         </section>
 
@@ -23,9 +24,11 @@
             <button type="button" class="btn btn-danger btn-block" ng-click="deleteAllWeatherInfoAndStations()">Ta bort
                 all väderdata
             </button>
+
+            <label for="tabletype">Filtertyp Station eller sök</label>
+            <input id="tabletype" type="checkbox" ng-model="myVar" ng-init="myVar = false">
         </section>
-        <label for="tabletype">Filtertyp Station eller sök</label>
-        <input id="tabletype" type="checkbox" ng-model="myVar" ng-init="myVar = false">
+
         <div ng-if="!myVar">
             <table class="  table table-striped col-lg-12   ">
                 <thead>
