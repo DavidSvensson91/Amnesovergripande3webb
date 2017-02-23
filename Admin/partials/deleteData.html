@@ -38,8 +38,7 @@
                     <th>Lufttryck</th>
                     <th>Molntyp</th>
                     <th>Vindriktning</th>
-                    <th>Tid</th>
-                    <th>Datum</th>
+                    <th>Datum/Tid</th>
                 </tr>
                 </thead>
                 <tr ng-repeat="Object in stations.$$state.value[selectedStation].weatherInfo">
@@ -51,8 +50,7 @@
                     <th><input class="inputWidth" ng-model="Object.airPressure"></th>
                     <th><input class="inputWidth" ng-model="Object.cloudType"></th>
                     <th><input class="inputWidth" ng-model="Object.windDirection"></th>
-                    <th>{{}}</th>
-                    <th><input class="inputWidth" ng-model="Object.date"></th>
+                    <th><input class="inputWidth2" ng-model="Object.date"></th>
                     <th>
                         <button type="button" class="close" ng-click="UpdateWeatherInfo(Object.id, Object.temp, Object.date, Object.airPressure, Object.humidity,
                         Object.windForce, Object.cloudBase, Object.okta,Object.cloudType, Object.windDirection, stations.$$state.value[selectedStation].id )">
@@ -81,8 +79,7 @@
                     <th>Lufttryck</th>
                     <th>Molntyp</th>
                     <th>Vindriktning</th>
-                    <th>Tid</th>
-                    <th>Datum</th>
+                    <th>Datum/Tid</th>
                 </tr>
                 </thead>
                 <tr ng-repeat="Object in tableArray">
@@ -94,8 +91,7 @@
                     <th><input class="inputWidth" ng-model="Object.airPressure"></th>
                     <th><input class="inputWidth" ng-model="Object.cloudType"></th>
                     <th><input class="inputWidth" ng-model="Object.windDirection"></th>
-                    <th>{{}}</th>
-                    <th><input class="inputWidth" ng-model="Object.date"></th>
+                    <th><input class="inputWidth2" ng-model="Object.date"></th>
                     <th>
                         <button type="button" class="close" ng-click="UpdateWeatherInfo(Object.id, Object.temp, Object.date, Object.airPressure, Object.humidity,
                         Object.windForce, Object.cloudBase, Object.okta,Object.cloudType, Object.windDirection, stations.$$state.value[selectedStation].id )">

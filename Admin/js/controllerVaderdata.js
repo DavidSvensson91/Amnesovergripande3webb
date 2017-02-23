@@ -21,7 +21,7 @@ angular.module('myApp').controller('vaderdata', ['$scope', '$filter', '$http', '
     //addStation info.
     $scope.addStation = '';
 
-    $scope.date = moment().format('YYYY-MM-DD');
+    $scope.date = moment().format('YYYY-MM-DD h:mm:ss');
 
     //Existerande molntyper från databasen.
     $scope.molntyp = {
@@ -54,7 +54,7 @@ angular.module('myApp').controller('vaderdata', ['$scope', '$filter', '$http', '
     //För att lägga till väderdata.
     $scope.vader = function (temperatur, date, lufttryck, luftfuktighet, vindstyrka, molnbashojd, himmel) {
 
-        $scope.date = moment().format('YYYY-MM-DD');
+        $scope.date = moment().format('YYYY-MM-DD h:mm:ss');
         var ha = parseInt(date);
         console.log("dgfsdgsdg" + ha);
 
